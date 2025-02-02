@@ -74,11 +74,23 @@ WSGI_APPLICATION = 'expensetracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'expense',
+       'USER': 'postgres',
+       'PASSWORD': 'newpassword',
+       'HOST': 'localhost',
+       'PORT': '5432',
+   }
 }
 
 
@@ -117,6 +129,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+import os
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+STATICFILES_DIR = {
+    os.path.join(BASE_DIR , "public/static")
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/static')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
