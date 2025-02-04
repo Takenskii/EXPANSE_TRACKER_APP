@@ -35,7 +35,13 @@ def index(request):
         else:
             expense += tracking_history.amount
 
-    context = {'transactions': TrackingHistory.objects.all(), 'current_balance': current_balance, 'income':income, 'expense':expense}
+    context = {
+        'transactions': TrackingHistory.objects.all(), 
+        'current_balance': current_balance, 
+        'income': income, 
+        'expense': expense
+        }
+    
     return render(request, 'index.html', context)
 
 def delete_transaction(request, id):
