@@ -18,3 +18,9 @@ class TrackingHistory(models.Model):
 
     def __str__(self):
         return f"the amount is {self.amount} for the {self.description} which is a {self.expense_type} type transaction"
+    
+class RequestLogs(models.Model):
+    request_info = models.TextField()
+    request_type = models.CharField(max_length=100)
+    request_method = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)

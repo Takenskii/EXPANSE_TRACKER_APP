@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+<div style="margin-top: -80px !important">
+  <h3>Login</h3>
+
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+  {% endif %}
+
+  <form method="POST" id="form">
+    {% csrf_token %}
+    <div class="form-control">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username..." required>
+    </div>
+
+    <div class="form-control">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password..." required>
+    </div>
+
+    <button class="btn" type="submit">Login</button>
+  </form>
+
+  <p>Don't have an account? <a href="{% url 'register_view' %}">Register here</a></p>
+</div>
+
+{% endblock %}

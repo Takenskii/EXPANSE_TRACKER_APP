@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div style="margin-top: -80px !important">
+
+    <h3>Register</h3>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="POST" id="form">
+        {% csrf_token %}
+        
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" placeholder="Username..." />
+            <small>Unique username is required</small>
+        </div>
+
+        <div class="form-control">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name" id="first_name" placeholder="First name..." />
+        </div>
+
+        <div class="form-control">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name" id="last_name" placeholder="Last name..." />
+        </div>
+
+        <div class="form-control">
+            <label for="email_address">Email Address</label>
+            <input type="email" name="email_address" id="email_address" placeholder="Email address..." />
+        </div>
+
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" placeholder="Password..." />
+        </div>
+
+        <p> Already have an account? <a href="{% url 'login_view' %}">Login</a></p>
+        
+        <button class="btn" type="submit" style="background-color: blueviolet;">Register</button>
+    </form>
+
+</div>
+
+{% endblock %}

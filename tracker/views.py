@@ -1,8 +1,54 @@
 from django.shortcuts import render, redirect
 from .models import TrackingHistory, CurrentBalance
 from django.db.models import Sum
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
+def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = User.objects.filter(username = username)
+
+        if not user.exists():
+            messages.error(request, "Username is not found")
+            return redirect('/login/')
+        user = authenticate(username=username, password=password)
+        if not user:
+            messages.error(request, "Incorrect password")
+            return redirect('/login/')
+        login(request, user)
+        return redirect('/')
+
+    return render(request, 'login.html')
+
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email_address = request.POST.get('email_address')
+
+        user = User.objects.filter(username = username)
+        if user.exists():
+            messages.error(request, "Username is already taken")
+            return redirect('/register/')
+        user = User.objects.create(
+            username = username,
+            first_name = first_name,
+            last_name = last_name,
+            email = email_address
+        )
+        user.set_password(password)
+        user.save()
+        messages.success(request, "Account is successfully created")
+        print("Debug: Username is already taken")
+        return redirect('/login/')
+    
+    return render(request, 'register.html')
 
 def index(request):
     if request.method == "POST":
