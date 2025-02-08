@@ -1,0 +1,11 @@
+Today the human-beings are exposed to get so many expenditures on the daily basis. Whether it's a saving for a vacation, planning for retirement,
+or simply a need to stay within some precise budget, keep track of expenses is essential. 
+'Expense Tracker' application based on the Django framework was created to address this need. 
+
+Project Overview
+My 'Expense Tracker' application will include the following features:
+
+User Authentication: Allow users to register, login, and manage their accounts securely.
+Expense Management: Users can add, view, edit, and delete their expenses.
+Expense Categories: Expenses can be categorized for better organization and analysis.
+Responsive Design: Ensure the application is accessible and functional across various devices.
